@@ -104,7 +104,7 @@ export default function MathsForFairness() {
   const navLinks = [
     { href: "#mission", label: "Mission" },
     { href: "#metrics", label: "Metrics" },
-    { href: "#about", label: "Audience" },
+    { href: "#about", label: "About" },
     { href: "#research", label: "Research" },
     { href: "#team", label: "Team" },
     { href: "#collaborate", label: "Collaborate" }
@@ -231,17 +231,17 @@ export default function MathsForFairness() {
             Mission
           </p>
           <p id="mission" style={{ fontSize: "clamp(1rem, 2vw, 1.1rem)", color: "#4b5563", maxWidth: "680px", margin: "0 auto", lineHeight: 1.8 }}>
-            We explore how mathematical thinking can be used to study fairness and bias in real systems — building simple models, testing them through simulations, and comparing how different students reason about the same problems.
+            We started with a simple question: can a system be mathematically fair and still produce outcomes that feel deeply wrong? Turns out the answer is yes — and once you see it, you can't unsee it. That's what this project is about.
           </p>
           <p style={{ fontSize: "0.875rem", color: "#6b7280", maxWidth: "520px", margin: "1.5rem auto 0", lineHeight: 1.7 }}>
-            This page is still evolving as we test ideas, run experiments, and learn from them.
+            This is an ongoing project. Last updated May 2026.
           </p>
         </header>
 
         {/* STATS — with repeating count-up animation */}
         <section id="metrics" style={{ padding: "0 1.5rem 3rem" }}>
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1.75rem", textAlign: "center" }}>What we measured</h2>
+            <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1.75rem", textAlign: "center" }}>What we are observing</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "1rem" }}>
               {[
                 { value: displayStats.students, label: "students engaged" },
@@ -264,8 +264,9 @@ export default function MathsForFairness() {
         <section id="about" style={{ maxWidth: "760px", margin: "0 auto", padding: "2.5rem 1.5rem", textAlign: "center" }}>
           <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1rem" }}>Who we made this for</h2>
           <p style={{ color: "#4b5563", lineHeight: 1.85 }}>
-            For curious students, educators, and anyone interested in how maths connects to real-world decisions.
-            We start with simple questions and explore how small changes in rules can lead to very different outcomes.
+            Honestly, we made it for ourselves first. We kept arguing about whether certain voting rules were actually fair or just felt fair — and we couldn't find a clean answer anywhere.
+            <br /><br />
+            So we built one. This is for anyone who's ever wondered whether the way we make group decisions is as neutral as we assume it is.
           </p>
         </section>
 
@@ -274,9 +275,24 @@ export default function MathsForFairness() {
           <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1.75rem", textAlign: "center" }}>What we looked at</h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.25rem" }}>
             {[
-              { title: "Fairness ideas", q: "How does fairness change when conditions or rules are slightly different?", m: "Simple mathematical representations of systems.", o: "Small changes in rules often lead to unexpected differences in outcomes." },
-              { title: "Simulations", q: "What happens when fairness rules are tested computationally?", m: "Small simulations with changing parameters.", o: "Outcomes depend heavily on rule structure." },
-              { title: "Student understanding", q: "How do students interpret fairness problems differently?", m: "Informal responses and reasoning comparisons.", o: "The same problem produces very different reasoning paths." }
+              {
+                title: "When neutral rules aren't neutral",
+                q: "Can a decision-making system be provably fair by its own rules and still produce outcomes that feel wrong?",
+                m: "We modelled several group decision systems and ran each one hundreds of times with the same starting preferences, changing only the rule used to reach a conclusion.",
+                o: "The same group of people, with identical preferences, produced a different outcome just by changing the decision rule. Nobody cheated. The rules were the problem."
+              },
+              {
+                title: "Fairness paradoxes",
+                q: "At what point does a system designed to represent everyone start misrepresenting most people?",
+                m: "Small simulations varying group size, preference spread, and decision thresholds to find where systems start breaking down.",
+                o: "An option rejected by the majority could still win under certain neutral-sounding rules. That surprised us. It probably should surprise most people."
+              },
+              {
+                title: "UK vs India — two definitions of fair",
+                q: "When students from different countries look at the same outcome, are they even asking the same question?",
+                m: "We gave identical scenarios to students across three schools and asked them to explain, in their own words, whether the outcome was fair.",
+                o: "We weren't just getting different answers — we were getting answers to different questions. That gap turned out to be more interesting than anything the maths showed us."
+              }
             ].map(card => (
               <article key={card.title} className="card">
                 <h3 style={{ fontWeight: 700, marginBottom: "0.75rem", fontSize: "0.95rem" }}>{card.title}</h3>
@@ -292,13 +308,28 @@ export default function MathsForFairness() {
         <section id="team" style={{ maxWidth: "1100px", margin: "0 auto", padding: "2.5rem 1.5rem" }}>
           <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "0.75rem", textAlign: "center" }}>How each of us work</h2>
           <p style={{ fontSize: "0.875rem", color: "#6b7280", textAlign: "center", maxWidth: "560px", margin: "0 auto 1.75rem", lineHeight: 1.7 }}>
-            Each of us focused on a different part of the project. We often overlap and help each other improve ideas.
+            We're across two countries and three schools. We disagree a lot. That's probably why it works.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem" }}>
             {[
-              { name: "Aarav Singla", role: "Modelling & systems thinking", school: "(GD Goenka School, India)" },
-              { name: "Advik Gupta", role: "Simulation & computational thinking", school: "(Queen Elizabeth Boys School, UK)" },
-              { name: "Parnika Gupta", role: "Human reasoning & insight", school: "(Henrietta Barnett School, UK)" }
+              {
+                name: "Aarav Singla",
+                role: "Modelling & systems thinking",
+                school: "GD Goenka School, India",
+                quote: "Honestly it started because I lost an argument and couldn't figure out why. I was sure the other person was wrong but I couldn't prove it. So I tried writing it out as a model and that kind of spiralled into this whole thing."
+              },
+              {
+                name: "Advik Gupta",
+                role: "Simulation & computational thinking",
+                school: "Queen Elizabeth Boys School, UK",
+                quote: "I just wanted to see it actually break. Like not read about why it breaks — actually watch it happen. So I coded it up and ran it loads of times and yeah, it broke. In ways I didn't expect which was kind of the best part."
+              },
+              {
+                name: "Parnika Gupta",
+                role: "Human reasoning & insight",
+                school: "Henrietta Barnett School, UK",
+                quote: "I was more interested in why people thought they were right than whether they actually were. When I started asking students to explain themselves I realised everyone had a completely different definition of fair in their head and nobody had really noticed that before."
+              }
             ].map(person => (
               <article key={person.name} className="card" style={{ textAlign: "center" }}>
                 <div style={{ width: "42px", height: "42px", borderRadius: "50%", backgroundColor: "#f3f4f6", margin: "0 auto 0.75rem", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem", fontWeight: 700, color: "#374151" }}>
@@ -306,7 +337,10 @@ export default function MathsForFairness() {
                 </div>
                 <h3 style={{ fontWeight: 700, marginBottom: "0.25rem", fontSize: "0.9rem" }}>{person.name}</h3>
                 <p style={{ fontSize: "0.85rem", color: "#374151", marginBottom: "0.25rem" }}>{person.role}</p>
-                <p style={{ fontSize: "0.75rem", color: "#9ca3af" }}>{person.school}</p>
+                <p style={{ fontSize: "0.75rem", color: "#9ca3af", marginBottom: "0.75rem" }}>{person.school}</p>
+                <p style={{ fontSize: "0.8rem", color: "#6b7280", lineHeight: 1.7, fontStyle: "italic", textAlign: "left", borderTop: "1px solid #f3f4f6", paddingTop: "0.75rem" }}>
+                  "{person.quote}"
+                </p>
               </article>
             ))}
           </div>
@@ -314,22 +348,23 @@ export default function MathsForFairness() {
 
         {/* COLLABORATE */}
         <section id="collaborate" style={{ maxWidth: "760px", margin: "0 auto", padding: "2.5rem 1.5rem", textAlign: "center" }}>
-          <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1rem" }}>Looking for collaborators</h2>
+          <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1rem" }}>Work with us</h2>
           <p style={{ color: "#4b5563", lineHeight: 1.85 }}>
-            We are open to working with other students and schools interested in exploring fairness through maths.
-            If you enjoy asking questions, testing ideas, or building simple models, you can be part of this project.
+            We want to run this with more schools — especially in countries with very different voting systems or political histories. If you're a student or teacher who wants to add your school's data to this project, we'd genuinely love that.
+            <br /><br />
+            The more perspectives we have, the more interesting the gaps become.
           </p>
         </section>
 
         {/* NOTES */}
         <section style={{ backgroundColor: "#f9fafb", padding: "2.5rem 1.5rem" }}>
           <div style={{ maxWidth: "760px", margin: "0 auto" }}>
-            <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1rem" }}>Notes</h2>
+            <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1rem" }}>Honest notes</h2>
             <ul style={{ color: "#4b5563", fontSize: "0.9rem", lineHeight: 2.1, paddingLeft: "1.25rem" }}>
-              <li>We keep rewriting ideas when they don't make sense yet.</li>
-              <li>Some parts are still unfinished and changing.</li>
-              <li>We work across schools in the UK and India, moving ideas between modelling, simulation, and discussion.</li>
-              <li>Different perspectives keep improving the work.</li>
+              <li>Our sample sizes are small. We know. We're working on it.</li>
+              <li>Simplified models are still models — and sometimes a simplified version of a problem is the only way to see what's actually going on.</li>
+              <li>We've rewritten the framing of this project three times because our thinking keeps changing as we go.</li>
+              <li>Aarav builds the models in India, Advik runs the simulations in the UK, Parnika talks to the students across the world. We share everything over calls and disagree a lot. That's probably why it works.</li>
             </ul>
           </div>
         </section>
