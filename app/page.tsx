@@ -104,7 +104,7 @@ export default function MathsForFairness() {
   const navLinks = [
     { href: "#mission", label: "Mission" },
     { href: "#metrics", label: "Metrics" },
-    { href: "#about", label: "About" },
+    { href: "#about", label: "Audience" },
     { href: "#research", label: "Research" },
     { href: "#team", label: "Team" },
     { href: "#collaborate", label: "Collaborate" }
