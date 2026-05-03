@@ -10,11 +10,39 @@ export default function MathsForFairness() {
   });
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [displayStats, setDisplayStats] = useState({ students: 0, schools: 0, experiments: 0, models: 0 });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const targets = { students: 118, schools: 3, experiments: 12, models: 8 };
+    const duration = 1600;
+    const steps = 50;
+
+    const runCountUp = () => {
+      let step = 0;
+      setDisplayStats({ students: 0, schools: 0, experiments: 0, models: 0 });
+      const countTimer = setInterval(() => {
+        step++;
+        const ease = 1 - Math.pow(1 - step / steps, 3);
+        setDisplayStats({
+          students: Math.round(targets.students * ease),
+          schools: Math.round(targets.schools * ease),
+          experiments: Math.round(targets.experiments * ease),
+          models: Math.round(targets.models * ease)
+        });
+        if (step >= steps) clearInterval(countTimer);
+      }, duration / steps);
+    };
+
+    runCountUp();
+    const repeatTimer = setInterval(runCountUp, 5000);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearInterval(repeatTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -74,10 +102,11 @@ export default function MathsForFairness() {
   }, []);
 
   const navLinks = [
-    { href: "#about", label: "About" },
+    { href: "#mission", label: "Mission" },
+    { href: "#metrics", label: "Metrics" },
+    { href: "#about", label: "Audience" },
     { href: "#research", label: "Research" },
     { href: "#team", label: "Team" },
-    { href: "#metrics", label: "Metrics" },
     { href: "#collaborate", label: "Collaborate" }
   ];
 
@@ -201,13 +230,35 @@ export default function MathsForFairness() {
           <p style={{ fontSize: "0.7rem", letterSpacing: "0.16em", color: "#9ca3af", textTransform: "uppercase", marginBottom: "0.5rem" }}>
             Mission
           </p>
-          <p style={{ fontSize: "clamp(1rem, 2vw, 1.1rem)", color: "#4b5563", maxWidth: "680px", margin: "0 auto", lineHeight: 1.8 }}>
+          <p id="mission" style={{ fontSize: "clamp(1rem, 2vw, 1.1rem)", color: "#4b5563", maxWidth: "680px", margin: "0 auto", lineHeight: 1.8 }}>
             We explore how mathematical thinking can be used to study fairness and bias in real systems — building simple models, testing them through simulations, and comparing how different students reason about the same problems.
           </p>
           <p style={{ fontSize: "0.875rem", color: "#6b7280", maxWidth: "520px", margin: "1.5rem auto 0", lineHeight: 1.7 }}>
             This page is still evolving as we test ideas, run experiments, and learn from them.
           </p>
         </header>
+
+        {/* STATS — with repeating count-up animation */}
+        <section id="metrics" style={{ padding: "0 1.5rem 3rem" }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+            <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1.75rem", textAlign: "center" }}>What we measured</h2>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "1rem" }}>
+              {[
+                { value: displayStats.students, label: "students engaged" },
+                { value: displayStats.schools, label: "schools involved" },
+                { value: displayStats.experiments, label: "experiments run" },
+                { value: displayStats.models, label: "models tested" }
+              ].map(stat => (
+                <div key={stat.label} className="card" style={{ backgroundColor: "#f9fafb", textAlign: "center" }}>
+                  <p style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.25rem" }}>
+                    {stat.value}<span style={{ fontSize: "1.25rem", fontWeight: 700, color: "#6b7280" }}>+</span>
+                  </p>
+                  <p style={{ fontSize: "0.8rem", color: "#6b7280" }}>{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* ABOUT */}
         <section id="about" style={{ maxWidth: "760px", margin: "0 auto", padding: "2.5rem 1.5rem", textAlign: "center" }}>
@@ -261,26 +312,6 @@ export default function MathsForFairness() {
           </div>
         </section>
 
-        {/* STATS */}
-        <section id="metrics" style={{ backgroundColor: "#f9fafb", padding: "3rem 1.5rem" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1.75rem", textAlign: "center" }}>What we observed</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "1rem" }}>
-              {[
-                { value: stats.students, label: "students engaged" },
-                { value: stats.schools, label: "schools involved" },
-                { value: stats.experiments, label: "experiments run" },
-                { value: stats.models, label: "models tested" }
-              ].map(stat => (
-                <div key={stat.label} className="card" style={{ backgroundColor: "white", textAlign: "center" }}>
-                  <p style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.25rem" }}>{stat.value}</p>
-                  <p style={{ fontSize: "0.8rem", color: "#6b7280" }}>{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* COLLABORATE */}
         <section id="collaborate" style={{ maxWidth: "760px", margin: "0 auto", padding: "2.5rem 1.5rem", textAlign: "center" }}>
           <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1rem" }}>Looking for collaborators</h2>
@@ -305,8 +336,11 @@ export default function MathsForFairness() {
 
         {/* FOOTER */}
         <footer style={{ textAlign: "center", padding: "2rem 1.5rem", color: "#9ca3af", fontSize: "0.8rem", borderTop: "1px solid #f3f4f6" }}>
-          Maths for Fairness — Student-led research project
-        </footer>
+	  Maths for Fairness — Student-led research project
+	  <br />
+	  <span style={{ fontSize: "0.75rem" }}>© {new Date().getFullYear()} Aarav Singla, Advik Gupta & Parnika Gupta. All rights reserved.
+	  </span>
+	</footer>
 
       </main>
     </>
