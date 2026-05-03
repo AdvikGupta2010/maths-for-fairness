@@ -241,7 +241,7 @@ export default function MathsForFairness() {
         {/* STATS — with repeating count-up animation */}
         <section id="metrics" style={{ padding: "0 1.5rem 3rem" }}>
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1.75rem", textAlign: "center" }}>What we are observing</h2>
+            <h2 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "1.75rem", textAlign: "center" }}>Where we are right now</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "1rem" }}>
               {[
                 { value: displayStats.students, label: "students engaged" },
