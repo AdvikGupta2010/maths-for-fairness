@@ -364,7 +364,8 @@ export default function MathsForFairness() {
               <li>Our sample sizes are small. We know. We're working on it.</li>
               <li>Simplified models are still models — and sometimes a simplified version of a problem is the only way to see what's actually going on.</li>
               <li>We've rewritten the framing of this project three times because our thinking keeps changing as we go.</li>
-              <li>Aarav builds the models in India, Advik runs the simulations in the UK, Parnika talks to the students across the world. We share everything over calls and disagree a lot. That's probably why it works.</li>
+              <li>Aarav builds the models in India, Advik runs the simulations in the UK, Parnika talks to the students across the world.</li>
+			  <li>We share everything over calls and disagree more than we agree. The model usually gets better after.</li>
             </ul>
           </div>
         </section>
